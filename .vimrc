@@ -19,12 +19,26 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
+" file linting
+Plugin 'Syntastic'
+
 " Molokai colorscheme
 Plugin 'molokai'
+
+" Markdown syntax highlighting
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" Scala syntax highlighting
+Bundle 'derekwyatt/vim-scala'
+
+" Scala linting with scalac
+let g:syntastic_scala_checkers = ['scalac']
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -71,4 +85,8 @@ set laststatus=2
 
 " show unicode glyphs
 set encoding=utf-8
+
+" insert 4 spaces when <tab> is hit
+set expandtab
+set tabstop=4
 
