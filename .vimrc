@@ -34,6 +34,26 @@ Plugin 'molokai'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
+" Highlight trailing spaces
+Plugin 'bronson/vim-trailing-whitespace'
+
+" GO
+" Go plugin for syntax highlighting, autocompletion, linting, etc.
+" Repository at http://github.com/fatih/vim-go
+Plugin 'fatih/vim-go'
+
+" code completions
+Plugin 'Valloric/YouCompleteMe'
+
+" class outline viewer
+Plugin 'majutsushi/tagbar'
+
+" snippets
+Bundle 'Shougo/neocomplete'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
+
+" SCALA
 " Scala syntax highlighting
 Bundle 'derekwyatt/vim-scala'
 
@@ -89,4 +109,42 @@ set encoding=utf-8
 " insert 4 spaces when <tab> is hit
 set expandtab
 set tabstop=4
+
+" remap leader to spacebar
+let mapleader=" "
+
+" map F8 to toggle the tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" Neosnippet configuration
+" key-mappings
+imap <C-k>    <Plug>(neosnippet_expand_or_jump)
+smap <C-k>    <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>    <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behaviour
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" snippet_complete marker
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" vim-go key-mappings
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>e <Plug>(go-rename)
+
+" vim-go settings
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_snippet_engine = "neosnippet"
 
