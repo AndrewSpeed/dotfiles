@@ -19,6 +19,7 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -33,32 +34,34 @@ Plugin 'molokai'
 " Markdown syntax highlighting
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
 
 " Highlight trailing spaces
 Plugin 'bronson/vim-trailing-whitespace'
 
-" GO
-" Go plugin for syntax highlighting, autocompletion, linting, etc.
-" Repository at http://github.com/fatih/vim-go
-Plugin 'fatih/vim-go'
+" Unite file manager, requires vimproc
+" go to `~/.vim/bundle/vimproc.vim` and run `./make`
+Plugin 'Shougo/vimproc'
+Plugin 'Shougo/unite.vim'
 
-" code completions
-Plugin 'Valloric/YouCompleteMe'
+let g:unite_source_history_yank_enable = 1
+try
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+catch
+endtry
 
-" class outline viewer
-Plugin 'majutsushi/tagbar'
+" search files for text
+Plugin 'ggreer/the_silver_searcher'
+Plugin 'rking/ag.vim'
+" --- type * to search the word in all files in the current dir
+nmap * :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <space>/ :Ag
 
-" snippets
-Bundle 'Shougo/neocomplete'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-
-" SCALA
-" Scala syntax highlighting
-Bundle 'derekwyatt/vim-scala'
-
-" Scala linting with scalac
-let g:syntastic_scala_checkers = ['scalac']
+" search a file in the filetree
+nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
+" reset not it is <C-l> normally
+:nnoremap <space>r <Plug>(unite_restart)
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -92,11 +95,11 @@ set cindent
 
 " smart indent when entering insert mode with i on empty lines
 function! IndentWithI()
-if len(getline('.')) == 0
-return "\"_ddO"
-else
-return "i"
-endif
+  if len(getline('.')) == 0
+    return "\"_ddO"
+  else
+    return "i"
+  endif
 endfunction
 nnoremap <expr> i IndentWithI()
 
@@ -110,41 +113,9 @@ set encoding=utf-8
 set expandtab
 set tabstop=4
 
-" remap leader to spacebar
-let mapleader=" "
-
-" map F8 to toggle the tagbar
-nmap <F8> :TagbarToggle<CR>
-
-" Neosnippet configuration
-" key-mappings
-imap <C-k>    <Plug>(neosnippet_expand_or_jump)
-smap <C-k>    <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>    <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behaviour
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" snippet_complete marker
-if has('conceal')
-  set conceallevel=2 concealcursor=i
+" highlight column 80
+if (exists('+colorcolumn'))
+  set colorcolumn=80
+  highlight ColorColumn ctermbg=9
 endif
-
-" vim-go key-mappings
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <leader>e <Plug>(go-rename)
-
-" vim-go settings
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_snippet_engine = "neosnippet"
 
