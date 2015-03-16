@@ -105,7 +105,6 @@
 	"hot_exit": true,
 	"ignored_packages":
 	[
-		"Markdown",
 		"Vintage"
 	],
 	"indent_guide_options":
@@ -141,7 +140,7 @@
 	[
 	],
 	"save_on_focus_lost": false,
-	"scroll_past_end": true,
+	"scroll_past_end": false,
 	"scroll_speed": 1.0,
 	"shift_tab_unindent": false,
 	"show_encoding": false,
