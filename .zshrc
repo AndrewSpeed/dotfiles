@@ -1,3 +1,4 @@
+source ~/.profile
 source ~/antigen/antigen.zsh
 
 # Load the oh-my-zsh's library.
@@ -43,6 +44,18 @@ antigen theme gallifrey
 # Tell antigen that you're done.
 antigen apply
 
-export SCALA_HOME=/usr/local/share/scala
-export PATH=$PATH:$SCALA_HOME/bin
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd extendedglob nomatch correct_all
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/aspeed/.zshrc'
 
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
