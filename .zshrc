@@ -38,6 +38,9 @@ alias yumu='sudo yum update'
 alias yumU='sudo yum upgrade'
 alias yumx='sudo yum erase'
 
+# vi to vim
+alias vi='vim'
+
 # Load the theme.
 antigen theme gallifrey
 
