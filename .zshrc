@@ -38,14 +38,17 @@ alias yumu='sudo yum update'
 alias yumU='sudo yum upgrade'
 alias yumx='sudo yum erase'
 
-# vi to vim
-alias vi='vim'
-
 # Load the theme.
 antigen theme gallifrey
 
 # Tell antigen that you're done.
 antigen apply
+
+# provide utility to query gitignore.io for gitignore contents
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+# alias vi to vim
+alias vi=vim
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -53,6 +56,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory autocd extendedglob nomatch correct_all
 bindkey -e
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/aspeed/.zshrc'
@@ -61,4 +65,3 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
