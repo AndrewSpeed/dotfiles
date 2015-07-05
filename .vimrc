@@ -1,8 +1,3 @@
-" enable powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -63,6 +58,9 @@ nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 " reset not it is <C-l> normally
 :nnoremap <space>r <Plug>(unite_restart)
 
+" install airline
+Plug 'bling/vim-airline'
+
 " All of your Plugs must be added before the following line
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -99,8 +97,10 @@ set laststatus=2
 set encoding=utf-8
 
 " insert 4 spaces when <tab> is hit
-set expandtab
+set shiftwidth=4
 set tabstop=4
+set expandtab
+
 
 " highlight column 80
 if (exists('+colorcolumn'))
