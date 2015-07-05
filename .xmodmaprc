@@ -1,0 +1,4 @@
+clear mod5
+add mod5 = ISO_Level3_Shift
+keycode 135 = Mode_switch
+keycode 51 = numbersign asciitilde backslash bar
