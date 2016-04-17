@@ -9,24 +9,28 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
   command-not-found
   docker
-  heroku
   screen
   sudo
   vagrant
   zsh-users/zsh-syntax-highlighting
 
-  django
-  pip
   python
-  virtualenv
-  virtualenvwrapper
 
   git
   gitignore
   git-extras
 
   scala
+
+  unixorn/autoupdate-antigen.zshplugin
 EOBUNDLES
+
+# Apt
+alias aS='apt-cache search'
+alias aI='sudo apt install -y'
+alias aUd='sudo apt update -y'
+alias aUg='sudo apt upgrade -y'
+alias aR='sudo apt remove -y'
 
 # Yum
 alias yumc='sudo yum clean all'
@@ -39,7 +43,7 @@ alias yumU='sudo yum upgrade'
 alias yumx='sudo yum erase'
 
 # Load the theme.
-antigen theme gallifrey
+antigen theme https://github.com/halfo/lambda-mod-zsh-theme lambda-mod
 
 # Tell antigen that you're done.
 antigen apply
