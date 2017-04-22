@@ -8,6 +8,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
+" remap Leader to space
+let mapleader = "\<Space>"
+
 call plug#begin('~/.vim/bundle')
 
 " The following are examples of different formats supported.
@@ -16,50 +19,20 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-
 " file linting
 Plug 'Syntastic'
 
 " Molokai colorscheme
 Plug 'molokai'
 
-" Markdown syntax highlighting
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+" Completions
+Plug 'Shougo/neocomplete.vim'
 
-" Highlight trailing spaces
-Plug 'bronson/vim-trailing-whitespace'
+" Snippets
+Plug 'SirVer/ultisnips'
 
-" Unite file manager, requires vimproc
-" go to `~/.vim/bundle/vimproc.vim` and run `./make`
-Plug 'Shougo/vimproc'
-Plug 'Shougo/unite.vim'
-
-let g:unite_source_history_yank_enable = 1
-try
-  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-catch
-endtry
-
-" search files for text
-Plug 'ggreer/the_silver_searcher'
-Plug 'rking/ag.vim'
-" --- type * to search the word in all files in the current dir
-nmap * :Ag <c-r>=expand("<cword>")<cr><cr>
-nnoremap <space>/ :Ag
-
-" search a file in the filetree
-nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
-" reset not it is <C-l> normally
-:nnoremap <space>r <Plug>(unite_restart)
-
-" install airline
-Plug 'bling/vim-airline'
+" Go plugin
+Plug 'fatih/vim-go'
 
 " All of your Plugs must be added before the following line
 call plug#end()            " required
@@ -80,19 +53,6 @@ set hlsearch
 " enable cindent
 set cindent
 
-" smart indent when entering insert mode with i on empty lines
-function! IndentWithI()
-  if len(getline('.')) == 0
-    return "\"_ddO"
-  else
-    return "i"
-  endif
-endfunction
-nnoremap <expr> i IndentWithI()
-
-" enable status line for powerline
-set laststatus=2
-
 " show unicode glyphs
 set encoding=utf-8
 
@@ -101,10 +61,31 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 
+" go plugin bindings
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
 
-" highlight column 80
-if (exists('+colorcolumn'))
-  set colorcolumn=80
-  highlight ColorColumn ctermbg=9
-endif
+" docs for word under cursor
+au FileType go nmap <leader>gd <Plug>(go-doc)
+au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
 
+" interaces the word under the cursor implements
+au FileType go nmap <leader>s <Plug>(go-implements)
+
+" rename word under cursor
+au FileType go nmap <leader>e <Plug>(go-rename)
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
+" Syntastic vim-go settings
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"

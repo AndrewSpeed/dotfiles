@@ -22,8 +22,14 @@ antigen bundles <<EOBUNDLES
 
   scala
 
+  virtualenvwrapper
+
+  zsh-users/zsh-autosuggestions
+
   unixorn/autoupdate-antigen.zshplugin
 EOBUNDLES
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=0
 
 # Apt
 alias aS='apt-cache search'
@@ -68,6 +74,8 @@ zstyle :compinstall filename '/home/aspeed/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+source ~/.profile
 
 # colourise man page entries
 # https://gist.github.com/cocoalabs/2fb7dc2199b0d4bf160364b8e557eb66
