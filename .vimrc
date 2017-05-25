@@ -1,4 +1,5 @@
 set nocompatible              " be iMproved, required
+set number
 filetype off                  " required
 
 " download plug if not installed
@@ -20,10 +21,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " file linting
-Plug 'Syntastic'
+Plug 'vim-syntastic/syntastic'
 
 " Molokai colorscheme
-Plug 'molokai'
+Plug 'tomasr/molokai'
 
 " Completions
 Plug 'Shougo/neocomplete.vim'
