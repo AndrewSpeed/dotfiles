@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-set number
+set relativenumber
 filetype off                  " required
 
 " download plug if not installed
@@ -28,9 +28,6 @@ Plug 'tomasr/molokai'
 
 " Completions
 Plug 'Shougo/neocomplete.vim'
-
-" Snippets
-Plug 'SirVer/ultisnips'
 
 " Go plugin
 Plug 'fatih/vim-go'
@@ -90,3 +87,7 @@ let g:go_fmt_command = "goimports"
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
+
+" Language specific syntax settings
+au FileType python setl sw=2 sts=2 et
+au FileType ruby setl sw=2 sts=2 et
