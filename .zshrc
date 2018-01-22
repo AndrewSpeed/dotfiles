@@ -9,9 +9,7 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
   command-not-found
   docker
-  screen
   sudo
-  vagrant
   zsh-users/zsh-syntax-highlighting
 
   python
@@ -19,10 +17,6 @@ antigen bundles <<EOBUNDLES
   git
   gitignore
   git-extras
-
-  scala
-
-  virtualenvwrapper
 
   zsh-users/zsh-autosuggestions
 
@@ -90,3 +84,6 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+
+alias git="nocorrect git"
+alias fd="nocorrect fd"
