@@ -1,5 +1,26 @@
 set nocompatible              " be iMproved, required
-set relativenumber
+set number relativenumber     " set hybrid line numbers, current line shows the line number, others are relative
+
+" enable syntax highlighting
+syntax on
+
+" enable incremental search
+set incsearch
+
+" enable highlighting of matches
+set hlsearch
+
+" enable cindent
+set cindent
+
+" show unicode glyphs
+set encoding=utf-8
+
+" insert 4 spaces when <tab> is hit
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
 filetype off                  " required
 
 " download plug if not installed
@@ -23,6 +44,11 @@ Plug 'airblade/vim-gitgutter'
 " file linting
 Plug 'vim-syntastic/syntastic'
 
+" Syntastic vim-go settings
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+
 " Molokai colorscheme
 Plug 'tomasr/molokai'
 
@@ -31,33 +57,6 @@ Plug 'Shougo/neocomplete.vim'
 
 " Go plugin
 Plug 'fatih/vim-go'
-
-" All of your Plugs must be added before the following line
-call plug#end()            " required
-filetype plugin indent on    " required
-
-" enable molokai colorscheme
-colorscheme molokai
-
-" enable syntax highlighting
-syntax on
-
-" enable incremental search
-set incsearch
-
-" enable highlighting of matches
-set hlsearch
-
-" enable cindent
-set cindent
-
-" show unicode glyphs
-set encoding=utf-8
-
-" insert 4 spaces when <tab> is hit
-set shiftwidth=4
-set tabstop=4
-set expandtab
 
 " go plugin bindings
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -83,10 +82,26 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
-" Syntastic vim-go settings
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
+" Rust plugin
+Plug 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
+
+" js syntax highlighting
+Plug 'pangloss/vim-javascript'
+
+" jsx syntax highlighting
+Plug 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
+
+" fuzzy searching
+Plug '~/.fzf'
+
+" All of your Plugs must be added before the following line
+call plug#end()            " required
+filetype plugin indent on    " required
+
+" enable molokai colorscheme
+colorscheme molokai
 
 " Language specific syntax settings
 au FileType python setl sw=2 sts=2 et
