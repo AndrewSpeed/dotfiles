@@ -71,6 +71,11 @@ compinit
 
 source ~/.profile
 
+# exercism CLI zsh completion
+if [ -n "$ZSH_VERSION" ] && [ -f ~/.config/exercism/exercism_completion.zsh ]; then
+    . ~/.config/exercism/exercism_completion.zsh
+fi
+
 # colourise man page entries
 # https://gist.github.com/cocoalabs/2fb7dc2199b0d4bf160364b8e557eb66
 man() {
@@ -87,3 +92,5 @@ man() {
 
 alias git="nocorrect git"
 alias fd="nocorrect fd"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
