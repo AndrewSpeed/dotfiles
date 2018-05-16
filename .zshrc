@@ -94,3 +94,4 @@ alias git="nocorrect git"
 alias fd="nocorrect fd"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.scripts/fzf.sh
