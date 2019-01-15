@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-set number relativenumber     " set hybrid line numbers, current line shows the line number, others are relative
+set number relativenumber     " relative line numbers, with absolute line number for current line
 
 " enable syntax highlighting
 syntax on
@@ -22,6 +22,12 @@ set tabstop=4
 set expandtab
 
 filetype off                  " required
+
+if !isdirectory($HOME.'/.vim/undodir')
+    call mkdir($HOME.'/.vim/undodir', 'p')
+endif
+set undofile
+set undodir=~/.vim/undodir    " file history that persists across sessions
 
 " download plug if not installed
 if empty(glob('~/.vim/autoload/plug.vim'))
