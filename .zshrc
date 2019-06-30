@@ -31,7 +31,7 @@ alias vi=vim
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd extendedglob nomatch correct_all
+setopt appendhistory autocd extendedglob nomatch
 bindkey -e
 
 # End of lines configured by zsh-newuser-install
@@ -60,6 +60,8 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+
+xmodmap ~/.xmodmaprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.scripts/fzf.zsh
