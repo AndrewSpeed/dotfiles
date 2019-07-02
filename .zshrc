@@ -19,7 +19,7 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load --verbose
+zplug load
 
 # provide utility to query gitignore.io for gitignore contents
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
