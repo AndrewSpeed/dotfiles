@@ -1,65 +1,57 @@
-source ~/.profile
-source ~/.zplug/init.zsh
+# zmodload zsh/zprof # enable profiling
+# module_path+=( "/Users/andrewspeed/.zplugin/mod-bin/zmodules/Src" )
+# zmodload zdharma/zplugin
 
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
-
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=0
-
-# Load the theme.
-zplug 'halfo/lambda-mod-zsh-theme', as:theme
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-zplug load
-
-# provide utility to query gitignore.io for gitignore contents
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
-# alias vi to vim
 alias vi=vim
 
-# Lines configured by zsh-newuser-install
+# load all profile scripts
+for file in $HOME/.profile_scripts/*; do
+  source $file;
+done
+
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory autocd extendedglob nomatch correct_all
+HISTSIZE=2000
+SAVEHIST=2000
+setopt appendhistory autocd extendedglob hist_ignore_all_dups nomatch
 bindkey -e
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/aspeed/.zshrc'
+# Add cargo, homebrew and Cellar directories to path
+export PATH="$HOME/.cargo/bin:/usr/local/Cellar/qt@5.5/5.5.1_1/bin:/usr/local/Homebrew/bin:/usr/local/opt/openssl/bin:/usr/local/bin:$PATH"
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+### Added by Zplugin's installer
+source '/Users/andrewspeed/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
 
-# exercism CLI zsh completion
-if [ -n "$ZSH_VERSION" ] && [ -f ~/.config/exercism/exercism_completion.zsh ]; then
-    . ~/.config/exercism/exercism_completion.zsh
-fi
+# https://github.com/zdharma/zplugin#calling-compinit-with-turbo-mode
+zplugin ice atinit'zpcompinit' wait''; zplugin load zsh-users/zsh-syntax-highlighting
+zplugin load zsh-users/zsh-autosuggestions
 
-# colourise man page entries
-# https://gist.github.com/cocoalabs/2fb7dc2199b0d4bf160364b8e557eb66
-man() {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
-        man "$@"
-}
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=0
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+export NVM_DIR="/Users/andrewspeed/.nvm"
+export NVM_LAZY_LOAD=true
+zplugin load lukechilds/zsh-nvm
+
+# Load the theme.
+# https://github.com/zdharma/zplugin/issues/146
+setopt prompt_subst
+autoload colors
+colors
+# https://github.com/halfo/lambda-mod-zsh-theme/issues/23
+zplugin snippet OMZ::lib/git.zsh
+zplugin ice pick"lambda-mod.zsh-theme"; zplugin light halfo/lambda-mod-zsh-theme 
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.scripts/fzf.zsh
+
+# zpmod source-study # duration of each sourced file
+# zprof # complete profiling
+# update_dotfiles
