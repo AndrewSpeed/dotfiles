@@ -1,17 +1,22 @@
 [user]
-	name = Andrew Speed
-	email = andrew.cspeed@gmail.com
+    name = Andrew Speed
+    email = andrew.cspeed@gmail.com
 [alias]
-	st = status
-	co = checkout
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-[core]
-	editor = vim
-[push]
-	default = simple
+    st = status
+    co = checkout
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[branch]
+    sort=-committerdate
 [color]
-	ui = true
+    ui = true
+[core]
+    editor = vim
+    autocrlf = input
+[help]
+    autocorrect = 1
+[push]
+    default = simple
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [mergetool]
-	prompt = false
+    prompt = false
