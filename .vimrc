@@ -61,24 +61,6 @@ Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Rails, Rubocop & Rspec
-Plug 'tpope/vim-rails', { 'for': ['ruby'] }
-Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
-
-" JSX
-Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
-let g:jsx_ext_required = 0
-
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-" autoformat before save
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.css,*.scss,*.json, PrettierAsync
-
-" Rust
-Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
-let g:rustfmt_autosave = 1
-
 " Jenkinsfile
 au BufNewFile,BufRead Jenkinsfile setf groovy
 
@@ -92,31 +74,14 @@ let g:ale_sh_shellcheck_options = '-x'
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 200
 
-" Indent highlighting
-"Plug 'Yggdroot/indentLine'
-
 " Molokai colorscheme
 Plug 'tomasr/molokai'
-
-" Completions
-Plug 'Shougo/neocomplete.vim'
 
 Plug 'alfredodeza/pytest.vim', { 'for': ['python'] }
 " Pytest
 au FileType python nmap <silent><Leader>f <Esc>:Pytest file<CR>
 au FileType python nmap <silent><Leader>c <Esc>:Pytest class<CR>
 au FileType python nmap <silent><Leader>m <Esc>:Pytest method<CR>
-
-" Rust plugin
-Plug 'rust-lang/rust.vim'
-let g:rustfmt_autosave = 1
-
-" js syntax highlighting
-Plug 'pangloss/vim-javascript'
-
-" jsx syntax highlighting
-Plug 'mxw/vim-jsx'
-let g:jsx_ext_required = 0
 
 " fuzzy searching
 Plug '~/.fzf'
@@ -128,16 +93,8 @@ filetype plugin indent on    " required
 " enable molokai colorscheme
 colorscheme molokai
 
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-
 " Language specific syntax settings
 au FileType python setl sw=4 sts=4 et
-au FileType ruby setl sw=2 sts=2 et
-au FileType javascript.jsx setl sw=2 sts=2 et
 
 " disable arrow keys
 noremap <Up> <NOP>
