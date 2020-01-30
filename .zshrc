@@ -43,6 +43,33 @@ zplugin ice pick"lambda-mod.zsh-theme"; zplugin light halfo/lambda-mod-zsh-theme
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# required to use brew python instead of system python
+PATH="/Users/aspeed/Library/Python/3.7/bin:/usr/local/opt/python/libexec/bin:$PATH"
+PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+# required to use brew ruby instead of system ruby
+PATH="/usr/local/opt/ruby/bin:$PATH"
+PATH="~/.gem/bin:$PATH"
+
+eval "$(direnv hook zsh)"
+
+# docker-compse aliases
+alias dc="docker-compose"
+alias dct="docker-compose -f docker-compose.test.yml"
+
+# required to allow prompt for GPG passphrase
+export GPG_TTY=$(tty)
+
+# set ruby environment so gems can be installed without sudo
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
+
+# add cargo to the PATH
+export PATH=$HOME/.cargo/bin:$PATH
+
 # zpmod source-study # duration of each sourced file
 # zprof # complete profiling
 # update_dotfiles

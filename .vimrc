@@ -68,8 +68,8 @@ au BufNewFile,BufRead Jenkinsfile setf groovy
 Plug 'w0rp/ale'
 let g:ale_change_sign_column_color = 1
 let g:ale_completion_enabled = 1
-let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'python': ['pyflakes']}
-let g:ale_fixers = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'python': ['black']}
+let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'python': ['flake8', 'pylint']}
+let g:ale_fixers = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'python': ['black', 'isort']}
 let g:ale_sh_shellcheck_options = '-x'
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 200

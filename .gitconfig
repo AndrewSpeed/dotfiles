@@ -1,6 +1,7 @@
 [user]
     name = Andrew Speed
     email = aspeed@cloudsmith.io
+	signingkey = 59F2DA543076EC00
 [alias]
     st = status
     co = checkout
@@ -12,6 +13,7 @@
 [core]
     editor = vim
     autocrlf = input
+	excludesfile = /Users/aspeed/.gitignore_global
 [help]
     autocorrect = 1
 [push]
@@ -20,3 +22,12 @@
     tool = vimdiff
 [mergetool]
     prompt = false
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = store
