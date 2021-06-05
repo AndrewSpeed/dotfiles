@@ -47,60 +47,28 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" file linting
-Plug 'vim-syntastic/syntastic'
+" Quote/Bracket replacement
+Plug 'tpope/vim-surround'
 
-" Syntastic vim-go settings
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
+" Fuzzy finder
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Async Linting Engine
+Plug 'w0rp/ale'
+let g:ale_change_sign_column_color = 1
+let g:ale_completion_enabled = 1
+let g:ale_linters = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'python': ['flake8', 'pylint']}
+let g:ale_fixers = {'ruby': ['rubocop'], 'javascript': ['eslint'], 'python': ['black', 'isort']}
+let g:ale_sh_shellcheck_options = '-x'
+let g:ale_fix_on_save = 1
+let g:ale_lint_delay = 200
 
 " Molokai colorscheme
 Plug 'tomasr/molokai'
 
-" Completions
-Plug 'Shougo/neocomplete.vim'
-
-" Go plugin
-Plug 'fatih/vim-go'
-
-" go plugin bindings
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-
-" docs for word under cursor
-au FileType go nmap <leader>gd <Plug>(go-doc)
-au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
-
-" interaces the word under the cursor implements
-au FileType go nmap <leader>s <Plug>(go-implements)
-
-" rename word under cursor
-au FileType go nmap <leader>e <Plug>(go-rename)
-
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-
 " Rust plugin
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 let g:rustfmt_autosave = 1
-
-" js syntax highlighting
-Plug 'pangloss/vim-javascript'
-
-" jsx syntax highlighting
-Plug 'mxw/vim-jsx'
-let g:jsx_ext_required = 0
-
-" fuzzy searching
-Plug '~/.fzf'
 
 " All of your Plugs must be added before the following line
 call plug#end()            " required
