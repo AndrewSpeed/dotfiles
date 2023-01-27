@@ -13,5 +13,10 @@
 	ui = true
 [merge]
 	tool = vimdiff
+	conflictstyle = diff3
 [mergetool]
 	prompt = false
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
