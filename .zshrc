@@ -1,51 +1,16 @@
 source ~/.profile
-source ~/.zplug/init.zsh
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
+antidote load
+
+autoload -Uz promptinit && promptinit && prompt lambda-mod
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=0
-
-# Load the theme.
-zplug 'halfo/lambda-mod-zsh-theme', as:theme
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-zplug load
-
-# provide utility to query gitignore.io for gitignore contents
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
 # alias vi to vim
 alias vi=vim
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory autocd extendedglob nomatch correct_all
-bindkey -e
-
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/aspeed/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-# exercism CLI zsh completion
-if [ -n "$ZSH_VERSION" ] && [ -f ~/.config/exercism/exercism_completion.zsh ]; then
-    . ~/.config/exercism/exercism_completion.zsh
-fi
+zstyle :compinstall filename '/home/andrewspeed/.zshrc'
 
 # colourise man page entries
 # https://gist.github.com/cocoalabs/2fb7dc2199b0d4bf160364b8e557eb66
@@ -60,6 +25,3 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.scripts/fzf.zsh

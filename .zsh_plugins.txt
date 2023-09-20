@@ -1,0 +1,10 @@
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+ohmyzsh/ohmyzsh path:plugins/git-prompt
+ohmyzsh/ohmyzsh path:plugins/sudo
+
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+
+# Load the theme.
+halfo/lambda-mod-zsh-theme
