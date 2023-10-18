@@ -78,5 +78,5 @@ filetype plugin indent on    " required
 colorscheme molokai
 
 " Language specific syntax settings
-au FileType python setl sw=2 sts=2 et
+au FileType python setl sw=4 sts=4 et
 au FileType ruby setl sw=2 sts=2 et
