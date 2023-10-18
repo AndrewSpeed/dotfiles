@@ -3,14 +3,17 @@ source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 
 antidote load
 
-autoload -Uz promptinit && promptinit && prompt lambda-mod
-
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=0
 
 # alias vi to vim
 alias vi=vim
 
 zstyle :compinstall filename '/home/andrewspeed/.zshrc'
+
+# load all profile scripts
+for file in $HOME/.profile_scripts/*; do
+  source $file;
+done
 
 # colourise man page entries
 # https://gist.github.com/cocoalabs/2fb7dc2199b0d4bf160364b8e557eb66
