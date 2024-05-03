@@ -1,6 +1,7 @@
 [user]
 	name = Andrew Speed
 	email = andrew.cspeed@gmail.com
+	signingkey = /home/aspeed/.ssh/id_rsa.pub
 [alias]
 	st = status
 	co = checkout
