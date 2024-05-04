@@ -10,3 +10,9 @@ $ stow --target=$HOME --verbose <package>
 ```
 
 Add the `-n` flag to make the command a dry run.
+
+### Wrapper script
+
+A wrapper script `stow.sh` is also available in the `bin` directory which automatically applies the `target` and `verbose` flags
+
+If `direnv` is installed, this script will be available on the `$PATH`
