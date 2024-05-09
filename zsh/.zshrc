@@ -1,30 +1,24 @@
-source ~/.profile
-source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+# load zsh plugin manager
+# https://github.com/mattmc3/antidote
+if command -v brew &> /dev/null
+then
+    source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
+else
+    source "$HOME/.antidote/antidote.zsh"
+fi
 
+# install plugins
 antidote load
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=0
+# highlight suggestion
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=#ffffff,bold,underline"
 
-# alias vi to vim
-alias vi=vim
+# load all env scripts
+if [ -d "$HOME/.env_scripts" ]
+then
+    for file in "$HOME/.env_scripts"/*.sh; do
+        source "$file";
+    done
+fi
 
-zstyle :compinstall filename '/home/andrewspeed/.zshrc'
-
-# load all profile scripts
-for file in $HOME/.profile_scripts/*; do
-  source $file;
-done
-
-# colourise man page entries
-# https://gist.github.com/cocoalabs/2fb7dc2199b0d4bf160364b8e557eb66
-man() {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
-        man "$@"
-}
+source ~/.profile
