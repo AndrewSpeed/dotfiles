@@ -1,10 +1,22 @@
 # load zsh plugin manager
 # https://github.com/mattmc3/antidote
+
+
 if command -v brew &> /dev/null
 then
+    if [ ! -d "$(brew --prefix)/opt/antidote" ]
+    then
+        echo "Antidote not installed, installing via brew"
+        brew install antidote
+    fi
     source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
 else
-    source "$HOME/.antidote/antidote.zsh"
+    if [ ! -d "$HOME/.antidote" ]
+    then
+        echo "Antidote not installed, cloning repo into ${ZDOTDIR:-$HOME}"
+        git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-$HOME}/.antidote"
+    fi
+    source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
 fi
 
 # disable zsh async git prompt, breaks shell integration with theme
