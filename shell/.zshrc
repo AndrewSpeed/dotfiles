@@ -10,6 +10,9 @@ fi
 # disable zsh async git prompt, breaks shell integration with theme
 zstyle ':omz:alpha:lib:git' async-prompt no
 
+# enable completions
+autoload -Uz compinit && compinit
+
 # install plugins
 antidote load
 
