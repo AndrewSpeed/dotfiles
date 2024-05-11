@@ -5,9 +5,12 @@
 [includeIf "gitdir:~/equipmentshare/"]
     path = ~/equipmentshare/.gitconfig
 [alias]
-    st = status
+    c = commit
     co = checkout
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	f = push --force-with-lease
+	last = log -1 HEAD
+	lg = log --oneline
+    st = status
 [core]
     editor = vim
 [push]
@@ -15,7 +18,7 @@
 [color]
     ui = true
 [merge]
-    tool = vimdiff
+    tool = nvim -d
     conflictstyle = diff3
 [mergetool]
     prompt = false
