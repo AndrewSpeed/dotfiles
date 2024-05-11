@@ -29,7 +29,7 @@ autoload -Uz compinit && compinit
 antidote load
 
 # highlight suggestion
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=#ffffff,bold,underline"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=#ffffff,bold,underline,memo=zsh-autosuggestions-test"
 
 # load all env scripts
 if [ -d "$HOME/.env_scripts" ]
