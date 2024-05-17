@@ -7,9 +7,9 @@
 [alias]
     c = commit
     co = checkout
-	f = push --force-with-lease
-	last = log -1 HEAD
-	lg = log --oneline
+    f = push --force-with-lease
+    last = log -1 HEAD
+    lg = log --oneline
     st = status
 [core]
     editor = vim
