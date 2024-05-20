@@ -18,7 +18,7 @@
 [color]
     ui = true
 [merge]
-    tool = nvim -d
+    tool = nvimdiff
     conflictstyle = diff3
 [mergetool]
     prompt = false
