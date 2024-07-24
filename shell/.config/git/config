@@ -2,8 +2,10 @@
     name = Andrew Speed
     email = andrew.cspeed@gmail.com
     signingkey = /home/aspeed/.ssh/id_rsa.pub
-[includeIf "gitdir:~/equipmentshare/"]
-    path = ~/equipmentshare/.gitconfig
+[includeIf "gitdir:~/Personal/"]
+    path = ~/Personal/.gitconfig
+[includeIf "gitdir:~/Cloudsmith/"]
+    path = ~/Cloudsmith/.gitconfig
 [alias]
     c = commit
     co = checkout
