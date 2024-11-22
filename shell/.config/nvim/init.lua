@@ -87,6 +87,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load package manager
 require("lazy").setup({
+  -- Detect tabstop and shiftwidth automatically
+  "tpope/vim-sleuth",
+
   -- LSP
   {
     'neovim/nvim-lspconfig',
@@ -119,6 +122,14 @@ require("lazy").setup({
       -- Python
       lspconfig.pyright.setup {
 
+      }
+
+      lspconfig.ruff.setup {
+        init_options = {
+          settings = {
+            configuration = "./pyproject.toml"
+          }
+        }
       }
 
       -- Global mappings.
@@ -207,6 +218,23 @@ require("lazy").setup({
         sources = cmp.config.sources({
           { name = 'path' }
         })
+      })
+    end
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function()
+      local conform = require'conform'
+      conform.setup({
+        formatters_by_ft = {
+          python = {"ruff_fix", "ruff_format"}
+        },
+        format_on_save = {
+          -- These options will be passed to conform.format()
+          timeout_ms = 500,
+          lsp_format = "fallback",
+        },
       })
     end
   },
