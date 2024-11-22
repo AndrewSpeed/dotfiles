@@ -15,10 +15,21 @@
     st = status
 [core]
     editor = vim
+    pager  = delta  # cargo install git-delta
 [push]
     default = simple
 [color]
     ui = true
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+[diff]
+    colorMoved = default
+
+[interactive]
+    diffFilter = delta --color-only
+
 [merge]
     tool = nvimdiff
     conflictstyle = diff3
