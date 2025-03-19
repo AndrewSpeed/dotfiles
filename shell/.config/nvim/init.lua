@@ -90,6 +90,8 @@ require("lazy").setup({
   -- Detect tabstop and shiftwidth automatically
   "tpope/vim-sleuth",
 
+  "junegunn/fzf",
+
   -- LSP
   {
     'neovim/nvim-lspconfig',
@@ -172,6 +174,7 @@ require("lazy").setup({
       })
     end
   },
+
   -- LSP-based code-completion
   {
     "hrsh7th/nvim-cmp",
