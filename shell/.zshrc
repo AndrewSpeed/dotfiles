@@ -1,6 +1,8 @@
 # load zsh plugin manager
 # https://github.com/mattmc3/antidote
 
+# uncomment for profiling
+# zmodload zsh/zprof
 
 if command -v brew &> /dev/null
 then
@@ -42,3 +44,6 @@ then
 fi
 
 source ~/.profile
+
+# uncomment for profiling
+# zprof
