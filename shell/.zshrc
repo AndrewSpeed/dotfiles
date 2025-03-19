@@ -22,6 +22,8 @@ fi
 # disable zsh async git prompt, breaks shell integration with theme
 zstyle ':omz:alpha:lib:git' async-prompt no
 
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
 # enable completions
 autoload -Uz compinit && compinit
 
