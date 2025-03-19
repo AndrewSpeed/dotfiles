@@ -1,4 +1,5 @@
-general.import = [
+[general]
+import = [
     "~/.config/alacritty/themes/themes/monokai_pro.toml"
 ]
 
