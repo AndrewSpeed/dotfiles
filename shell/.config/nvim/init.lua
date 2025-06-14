@@ -149,9 +149,7 @@ require("lazy").setup({
       }
 
       -- Python
-      lspconfig.pyright.setup {
-
-      }
+      lspconfig.basedpyright.setup {}
 
       lspconfig.ruff.setup {
         init_options = {
