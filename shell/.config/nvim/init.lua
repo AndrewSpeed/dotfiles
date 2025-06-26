@@ -123,12 +123,9 @@ require("lazy").setup({
   {
     'neovim/nvim-lspconfig',
     config = function()
-      -- Setup language servers.
-      local lspconfig = require('lspconfig')
-
       -- Rust
-      lspconfig.rust_analyzer.setup {
-        -- Server-specific settings. See `:help lspconfig-setup`
+      vim.lsp.enable('rust_analyzer')
+      vim.lsp.config('rust_analyzer', {
         settings = {
           ["rust-analyzer"] = {
             cargo = {
@@ -146,18 +143,20 @@ require("lazy").setup({
             },
           },
         },
-      }
+      })
 
       -- Python
-      lspconfig.basedpyright.setup {}
-
-      lspconfig.ruff.setup {
+      vim.lsp.enable('basedpyright')
+      vim.lsp.config('basedpyright', {})
+      
+      vim.lsp.enable('ruff')
+      vim.lsp.config('ruff', {
         init_options = {
           settings = {
             configuration = "./pyproject.toml"
           }
         }
-      }
+      })
 
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
