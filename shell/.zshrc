@@ -35,6 +35,13 @@ antidote load
 # highlight suggestion
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=#ffffff,bold,underline,memo=zsh-autosuggestions-test"
 
+source ~/.profile
+
+# configure homebrew if present
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # load all env scripts
 if [ -d "$HOME/.env_scripts" ]
 then
@@ -42,8 +49,6 @@ then
         source "$file";
     done
 fi
-
-source ~/.profile
 
 # uncomment for profiling
 # zprof
