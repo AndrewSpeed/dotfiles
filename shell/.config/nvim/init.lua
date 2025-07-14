@@ -2,7 +2,6 @@
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
-
 -- keep more context on screen while scrolling
 vim.opt.scrolloff = 2
 
@@ -65,6 +64,16 @@ vim.opt.colorcolumn = '80'
 -- except in Rust where the rule is 100 characters
 vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
 
+-- lint files on save
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+
+    -- try_lint without arguments runs the linters defined in `linters_by_ft`
+    -- for the current filetype
+    require("lint").try_lint(nil, { ignore_errors = true })
+  end,
+})
+
 -- show more hidden characters
 -- also, show tabs nicer
 vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
@@ -113,10 +122,16 @@ require("lazy").setup({
     end
   },
 
-  -- pytest
+  -- linters
   {
-    "richardhapb/pytest.nvim",
-    opts = {},
+    "mfussenegger/nvim-lint",
+    config = function()
+      local linter = require('lint')
+      linter.linters_by_ft = {
+        sh = {'bash', 'shellcheck'},
+        python = {'mypy', 'ruff'},
+      }
+    end
   },
 
   -- LSP
@@ -149,7 +164,20 @@ require("lazy").setup({
       }
 
       -- Python
-      lspconfig.basedpyright.setup {}
+      -- lspconfig.basedpyright.setup {
+      --   analysis = {
+      --     typeCheckingMode = "off"
+      --   },
+      --   python = {
+      --     venvPath = "/Users/aspeed/Cloudsmith/monolith/.venv/"
+      --   }
+      -- }
+
+      lspconfig.pyright.setup {
+        python = {
+          venvPath = "/Users/aspeed/Cloudsmith/monolith/.venv/"
+        }
+      }
 
       lspconfig.ruff.setup {
         init_options = {
@@ -256,7 +284,7 @@ require("lazy").setup({
       local conform = require'conform'
       conform.setup({
         formatters_by_ft = {
-          python = {"ruff_fix", "ruff_format"}
+          python = {"mypy", "ruff_fix", "ruff_format"}
         },
         format_on_save = {
           -- These options will be passed to conform.format()
@@ -350,5 +378,3 @@ require("lazy").setup({
     end
   },
 })
-
-require('pytest').setup()
