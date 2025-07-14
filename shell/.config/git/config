@@ -13,6 +13,7 @@
     last = log -1 HEAD
     lg = log --oneline
     st = status
+	b = branch --column=auto --sort=committerdate
 [core]
     editor = vim
     pager  = delta  # cargo install git-delta
@@ -23,6 +24,7 @@
 
 [delta]
     navigate = true    # use n and N to move between diff sections
+    syntax-theme = "Coldark-Dark"
 
 [diff]
     colorMoved = default
@@ -32,7 +34,7 @@
 
 [merge]
     tool = nvimdiff
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 [mergetool]
     prompt = false
 [init]
