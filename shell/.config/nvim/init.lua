@@ -101,6 +101,16 @@ require("lazy").setup({
 
   "junegunn/fzf",
 
+  -- git interface
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "ibhagwan/fzf-lua",
+    },
+  },
+
   -- project specific config
   {
     "klen/nvim-config-local",
