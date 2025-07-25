@@ -43,6 +43,7 @@
     format = ssh
 [commit]
     gpgsign = true
+	verbose = true
 [pull]
 	rebase = true
 [rerere]
