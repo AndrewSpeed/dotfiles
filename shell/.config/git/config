@@ -52,3 +52,6 @@
 	sort = committerdate
 [column]
 	ui = auto
+[maintenance]
+	auto = true
+	strategy = incremental
