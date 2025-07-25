@@ -50,3 +50,5 @@
 	enabled = true
 [branch]
 	sort = -committerdate
+[column]
+	ui = auto
