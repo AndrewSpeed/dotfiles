@@ -347,7 +347,7 @@ require("lazy").setup({
   -- yaml
   {
     "cuducos/yaml.nvim",
-    ft = { "yaml" },
+    ft = { "yaml", "yml" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
