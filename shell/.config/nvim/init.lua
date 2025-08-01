@@ -375,4 +375,12 @@ require("lazy").setup({
       vim.g.vim_markdown_auto_insert_bullets = 0
     end
   },
+  -- auto bracket insertion
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  }
 })
