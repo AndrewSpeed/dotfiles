@@ -287,6 +287,7 @@ require("lazy").setup({
       })
     end
   },
+  -- code formatter
   {
     'stevearc/conform.nvim',
     opts = {},
@@ -294,7 +295,8 @@ require("lazy").setup({
       local conform = require'conform'
       conform.setup({
         formatters_by_ft = {
-          python = {"mypy", "ruff_fix", "ruff_format"}
+          python = {"mypy", "ruff_fix", "ruff_format"},
+          rust = { "rustfmt", lsp_format="fallback" }
         },
         format_on_save = {
           -- These options will be passed to conform.format()
@@ -318,20 +320,6 @@ require("lazy").setup({
         },
       })
     end
-  },
-  -- code formatter
-  {
-    'stevearc/conform.nvim',
-    opts = {
-      formatters_by_ft = {
-        rust = { "rustfmt", lsp_format="fallback" }
-      },
-      format_on_save = {
-        -- These options will be passed to conform.format()
-        timeout_ms = 500,
-        lsp_format = "fallback",
-      },
-    },
   },
   -- language support
   -- terraform
