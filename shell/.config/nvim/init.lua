@@ -322,6 +322,16 @@ require("lazy").setup({
     end
   },
   -- language support
+  -- general syntax
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "yaml" },
+      })
+    end,
+  },
   -- terraform
   {
     'hashivim/vim-terraform',
@@ -382,5 +392,5 @@ require("lazy").setup({
     config = true
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
-  }
+  },
 })
