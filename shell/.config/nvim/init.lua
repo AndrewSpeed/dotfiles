@@ -287,6 +287,7 @@ require("lazy").setup({
       })
     end
   },
+
   -- code formatter
   {
     'stevearc/conform.nvim',
@@ -306,6 +307,7 @@ require("lazy").setup({
       })
     end
   },
+
   -- inline function signatures
   {
     "ray-x/lsp_signature.nvim",
@@ -321,6 +323,7 @@ require("lazy").setup({
       })
     end
   },
+
   -- language support
   -- general syntax
   {
@@ -385,6 +388,7 @@ require("lazy").setup({
       vim.g.vim_markdown_auto_insert_bullets = 0
     end
   },
+
   -- auto bracket insertion
   {
     'windwp/nvim-autopairs',
@@ -393,6 +397,7 @@ require("lazy").setup({
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
+
   -- file search
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
@@ -406,4 +411,27 @@ require("lazy").setup({
       vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Git status' })
     end
   },
+
+  -- indentation guides
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+    config = function ()
+      local highlight = {
+        "CursorColumn",
+        "Whitespace",
+      }
+      require("ibl").setup {
+          indent = { highlight = highlight, char = "" },
+          whitespace = {
+              highlight = highlight,
+              remove_blankline_trail = false,
+          },
+          scope = { enabled = false },
+      }
+    end
+  }
 })
