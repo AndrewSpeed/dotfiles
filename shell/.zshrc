@@ -38,8 +38,15 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=#ffffff,bold,underline,mem
 source ~/.profile
 
 # configure homebrew if present
-if [[ -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     BREW_BIN_HOME="/home/linuxbrew/.linuxbrew/bin";;
+    Darwin*)    BREW_BIN_HOME="/opt/homebrew/bin";;
+esac
+if [[ -f "$BREW_BIN_HOME/brew" ]]
+then
+    eval "$($BREW_BIN_HOME/brew shellenv)"
+    export PATH="$HOMEBREW_CELLAR:$PATH"
 fi
 
 # load all env scripts
