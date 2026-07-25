@@ -49,6 +49,8 @@ then
     export PATH="$HOMEBREW_CELLAR:$PATH"
 fi
 
+DISABLE_PYENV=1
+
 # load all env scripts
 if [ -d "$HOME/.env_scripts" ]
 then
